@@ -1,16 +1,39 @@
-# This is a sample Python script.
-
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
-
-
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+#Made by Oskar Pakula
+#Gdansk University of Technology
+#Bachelor of Science - project
 
 
-# Press the green button in the gutter to run the script.
+
+def file_2_list(file, x: str):
+
+    list = file.read().split("{}".format(x))
+
+    return list
+
+
+
+
+def Disperssion_range(n: int, file):  #zakresy dyspersyjne w zależności od przyjetego modelu
+    for i in range(0, n): #zakres od 1 do n. Należy pamiętać, iż programy liczą od zera (tablice)
+        print('s')
+
+
+def main():
+    '''
+    Four_cole_cole = open('liczby.txt', 'r')
+    #Two_cole_cole = open('liczby.txt', 'r')
+
+    list_FCC=file_2_list(Four_cole_cole, ",")
+
+    print(list_FCC)
+'''
+    #Disperssion_range(4, plik)
+    x=complex((1+2/1j))
+    y=4
+    z= complex(x+y)
+
+    print(z.imag)
+
 if __name__ == '__main__':
-    print_hi('PyCharm')
-    print('ss')
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+    main()
+
