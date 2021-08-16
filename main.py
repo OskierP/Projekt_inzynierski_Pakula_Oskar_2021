@@ -40,4 +40,4 @@ def main():
 
 if __name__ == '__main__':
     main()
-#test czy działą
+#test czy działą jjj
