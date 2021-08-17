@@ -7,9 +7,6 @@ import csv
 
 
 def file_2_list(file, x: str):
-
-    #list = file.read().split(f"{x}")
-
     Array =[]
     Array.append([])
     index = 0
@@ -28,6 +25,36 @@ def file_2_list(file, x: str):
     return Array
 
 
+def epsilon(list, index: int, n: int):
+
+    eps_n = []
+
+    for i in range(n):
+        eps_n.append(float(list[index][2+i*3]))
+        # print(eps_n)
+    return eps_n
+
+
+def tau(list, index: int, n: int):
+
+    tau_n = []
+
+    for i in range(n):
+        tau_n.append(float(list[index][3 + i * 3]))
+        # print(tau_n)
+    return tau_n
+
+
+def alpha(list, index: int, n: int):
+
+    alpha_n = []
+
+    for i in range(n):
+        alpha_n.append(float(list[index][4 + i * 3]))
+        # print(alpha_n)
+    return alpha_n
+
+
 def Disperssion_range(n: int, epsilon, tau, alpha, freq: float):  #zakresy dyspersyjne w zależności od przyjetego modelu
     sigma = 0
     for i in range(0, n): #zakres od 1 do n. Należy pamiętać, iż programy liczą od zera (tablice)
@@ -40,17 +67,16 @@ def N_cole_cole(N: int, file_epsilon, file_tau, file_alpha, freq: float, epsiO, 
 
 
 def main():
+    CC4 = file_2_list(open('Cole-Cole_4.csv', 'r'), ",") # 4-Cole-cole: czytanie watości z pliku csv
+    CC2 = file_2_list(open('Cole-Cole_2.csv', 'r'), ",") # 2-Cole-cole: czytanie watości z pliku csv
 
+    # print(np.array(CC4))
+    # print('\n')
+    # print(np.array(CC2))
 
-
-    FCC4 = file_2_list(open('Cole-Cole_4.csv', 'r'), ",") # 4-Cole-cole: czytanie watości z pliku csv
-    FCC2 = file_2_list(open('Cole-Cole_2.csv', 'r'), ",") # 2-Cole-cole: czytanie watości z pliku csv
-
-    np.set_printoptions(linewidth=150)
-    print(np.array(FCC4))
-    print('\n')
-    print(np.array(FCC2))
-
+    print(epsilon(CC2,0,2))
+    print(tau(CC2,0,2))
+    print(alpha(CC2,0,2))
     # Disperssion_range(4, plik)
     # x=complex((1+2/1j))
     # y=4
@@ -58,5 +84,6 @@ def main():
     #print(z.imag)
 
 if __name__ == '__main__':
+    np.set_printoptions(linewidth=150)
     main()
 #test czy działą
