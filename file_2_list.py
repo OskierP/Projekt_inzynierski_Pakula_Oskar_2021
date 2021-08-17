@@ -1,3 +1,5 @@
+import numpy as np
+
 def file_2_list(file, x: str):
     Array = []
     Array.append([])
@@ -15,3 +17,6 @@ def file_2_list(file, x: str):
             Array[index].append(element)
 
     return Array
+
+def show_list(list):
+    return np.array(list)
