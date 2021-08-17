@@ -1,4 +1,4 @@
-from Cole_Cole_class import Cole_Cole as CC
+from Cole_Cole_class import coleCole as CC
 from file_2_list import file_2_list
 
 TCC = file_2_list(open('Cole-Cole_2.csv', 'r'), ",")  # 4-Cole-cole: czytanie watości z pliku csv
