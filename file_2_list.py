@@ -1,22 +1,25 @@
+import csv
+
 import numpy as np
 
+
 def file_2_list(file, x: str):
-    Array = [[]]
-    # Array.append([])
+    array = [[]]
+    # array.append([])
     index = 0
 
     for element in file.read().split(f"{x}"):
 
         if '\n' in element:
             tmp = element.split('\n')
-            Array[index].append(tmp[0])
-            Array.append([])
+            array[index].append(tmp[0])
+            array.append([])
             index += 1
-            Array[index].append(tmp[1])
+            array[index].append(tmp[1])
         else:
-            Array[index].append(element)
+            array[index].append(element)
 
-    return Array
+    return array
 
 
 def show_list(list):
@@ -24,9 +27,5 @@ def show_list(list):
 
 
 def list_2_file(list, file):
-    CSV = open(file, 'w')
-    for element in list:
-        if '][' in element:
-            CSV.write(str(element).replace('][', '\n'))
-        CSV.write(str(element))
-    CSV.close()
+    csv_writer = csv.writer(open(file, 'w'))
+    csv_writer.writerows(list)
