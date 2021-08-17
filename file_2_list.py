@@ -1,8 +1,8 @@
 import numpy as np
 
 def file_2_list(file, x: str):
-    Array = []
-    Array.append([])
+    Array = [[]]
+    # Array.append([])
     index = 0
 
     for element in file.read().split(f"{x}"):
@@ -18,5 +18,15 @@ def file_2_list(file, x: str):
 
     return Array
 
+
 def show_list(list):
     return np.array(list)
+
+
+def list_2_file(list, file):
+    CSV = open(file, 'w')
+    for element in list:
+        if '][' in element:
+            CSV.write(str(element).replace('][', '\n'))
+        CSV.write(str(element))
+    CSV.close()
