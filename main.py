@@ -3,59 +3,11 @@
 #Bachelor of Science - project
 
 import numpy as np
-from Objects_4_Cole_Cole import Four_Cole_Cole_Objects as FCCO
+
 from Objects_2_Cole_Cole import Two_Cole_Cole_Objects as TCCO
 from Objects_4_Cole_Cole import FCC
-from Objects_2_Cole_Cole import TCC
+from Objects_4_Cole_Cole import Four_Cole_Cole_Objects as FCCO
 from file_2_list import show_list
-
-# def file_2_list(file, x: str):
-#     Array =[]
-#     Array.append([])
-#     index = 0
-#
-#     for element in file.read().split(f"{x}"):
-#
-#         if '\n' in element:
-#             tmp = element.split('\n')
-#             Array[index].append(tmp[0])
-#             Array.append([])
-#             index += 1
-#             Array[index].append(tmp[1])
-#         else:
-#             Array[index].append(element)
-#
-#     return Array
-
-#
-# def epsilon(list, index: int, n: int):
-#
-#     eps_n = []
-#
-#     for i in range(n):
-#         eps_n.append(float(list[index][2+i*3]))
-#         # print(eps_n)
-#     return eps_n
-#
-#
-# def tau(list, index: int, n: int):
-#
-#     tau_n = []
-#
-#     for i in range(n):
-#         tau_n.append(float(list[index][3 + i * 3]))
-#         # print(tau_n)
-#     return tau_n
-#
-#
-# def alpha(list, index: int, n: int):
-#
-#     alpha_n = []
-#
-#     for i in range(n):
-#         alpha_n.append(float(list[index][4 + i * 3]))
-#         # print(alpha_n)
-#     return alpha_n
 
 
 def Disperssion_range(n: int, epsilon, tau, alpha, freq: float):  #zakresy dyspersyjne w zależności od przyjetego modelu
