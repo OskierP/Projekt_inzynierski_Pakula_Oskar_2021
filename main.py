@@ -6,6 +6,8 @@ import numpy as np
 from Objects_4_Cole_Cole import Four_Cole_Cole_Objects as FCCO
 from Objects_2_Cole_Cole import Two_Cole_Cole_Objects as TCCO
 from Objects_4_Cole_Cole import FCC
+from Objects_2_Cole_Cole import TCC
+from file_2_list import show_list
 
 # def file_2_list(file, x: str):
 #     Array =[]
@@ -85,6 +87,9 @@ def main():
     # print(np.array(CC2))
     print(FCCO[0].get_tau())
     print(TCCO[1].get_name())
+    print(FCCO[1].get_sigma())
+    print(FCCO[1].get_epsilon_inf())
+    print(show_list(FCC[1]))
     # print(epsilon(CC2,0,2))
     # print(tau(CC2,0,2))
     # print(alpha(CC2,0,2))
