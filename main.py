@@ -41,19 +41,20 @@ def N_cole_cole(N: int, file_epsilon, file_tau, file_alpha, freq: float, epsiO, 
 
 def main():
 
-    Four_cole_cole = open('Cole-Cole_4.csv', 'r')
-    #Two_cole_cole = open('liczby.txt', 'r')
 
-    list_FCC=file_2_list(Four_cole_cole, ",")
+
+    FCC4 = file_2_list(open('Cole-Cole_4.csv', 'r'), ",") # 4-Cole-cole: czytanie watości z pliku csv
+    FCC2 = file_2_list(open('Cole-Cole_2.csv', 'r'), ",") # 2-Cole-cole: czytanie watości z pliku csv
 
     np.set_printoptions(linewidth=150)
-    print(np.array(list_FCC))
+    print(np.array(FCC4))
+    print('\n')
+    print(np.array(FCC2))
 
-    #Disperssion_range(4, plik)
-    x=complex((1+2/1j))
-    y=4
-    z= complex(x+y)
-
+    # Disperssion_range(4, plik)
+    # x=complex((1+2/1j))
+    # y=4
+    # z= complex(x+y)
     #print(z.imag)
 
 if __name__ == '__main__':
