@@ -3,12 +3,29 @@
 #Bachelor of Science - project
 
 import numpy as np
+import csv
+
 
 def file_2_list(file, x: str):
 
-    list = file.read().split("{}".format(x))
+    #list = file.read().split(f"{x}")
 
-    return list
+    Array =[]
+    Array.append([])
+    index = 0
+
+    for element in file.read().split(f"{x}"):
+
+        if '\n' in element:
+            tmp = element.split('\n')
+            Array[index].append(tmp[0])
+            Array.append([])
+            index += 1
+            Array[index].append(tmp[1])
+        else:
+            Array[index].append(element)
+
+    return Array
 
 
 def Disperssion_range(n: int, epsilon, tau, alpha, freq: float):  #zakresy dyspersyjne w zależności od przyjetego modelu
@@ -23,20 +40,21 @@ def N_cole_cole(N: int, file_epsilon, file_tau, file_alpha, freq: float, epsiO, 
 
 
 def main():
-    '''
-    Four_cole_cole = open('liczby.txt', 'r')
+
+    Four_cole_cole = open('Cole-Cole_4.csv', 'r')
     #Two_cole_cole = open('liczby.txt', 'r')
 
     list_FCC=file_2_list(Four_cole_cole, ",")
 
-    print(list_FCC)
-'''
+    np.set_printoptions(linewidth=150)
+    print(np.array(list_FCC))
+
     #Disperssion_range(4, plik)
     x=complex((1+2/1j))
     y=4
     z= complex(x+y)
 
-    print(z.imag)
+    #print(z.imag)
 
 if __name__ == '__main__':
     main()
