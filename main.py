@@ -3,12 +3,12 @@
 # Bachelor of Science - project
 
 import constant as const
+from Objects_2_Cole_Cole import Two_Cole_Cole_Objects as TCCO
 from Objects_4_Cole_Cole import Four_Cole_Cole_Objects as FCCO
-from file_2_list import *
+from file_functions import *
 
 
-def disperssion_range(n: int, epsilon, tau, alpha,
-                      freq: float):  # zakresy dyspersyjne w zależności od przyjetego modelu
+def disperssion_range(n: int, epsilon, tau, alpha, freq: float):  # zakresy dyspersyjne
     sigma = 0
 
     for i in range(0, n):  # zakres od 1 do n. Należy pamiętać, iż programy liczą od zera (tablice)
@@ -28,10 +28,12 @@ def n_cole_cole(n: int, freq_bottom: int, freq_upper: int, list, step: int):
         array.append([])
         array[i].append(tissue.get_name())
         for freq in range(freq_bottom, freq_upper + step, step):
-            result = complex(tissue.get_epsilon_inf() + disperssion_range(n, tissue.get_epsilon(), tissue.get_tau(),
-                                                                          tissue.get_alpha(), float(freq)) + (
-                                     tissue.get_sigma0() / (1j * 2 * const.PI * const.epsilon_0)))
-            array[i].append(str(result))
+            result = complex(tissue.get_epsilon_inf() +
+                             disperssion_range(
+                                 n, tissue.get_epsilon(), tissue.get_tau(), tissue.get_alpha(), float(freq)
+                             ) +
+                             (tissue.get_sigma0() / (1j * 2 * const.PI * const.epsilon_0)))
+            array[i].append(str(round(result.real, 3)))
         i += 1
 
     return array
@@ -40,7 +42,10 @@ def n_cole_cole(n: int, freq_bottom: int, freq_upper: int, list, step: int):
 def main():
     freq_4_cc_bottom = 1 * 10 ** 6
     freq_4_cc_upper = 10 * 10 ** 9
-    step = 10000 * 10 ** 6
+    step = 100 * 10 ** 6
+
+    freq_2_cc_bottom = 500 * 10 ** 6
+    freq_2_cc_upper = 26500 * 10 ** 6
 
     # CC4 = file_2_list(open('Cole-Cole_4.csv', 'r'), ",") # 4-Cole-cole: czytanie watości z pliku csv
     # CC2 = file_2_list(open('Cole-Cole_2.csv', 'r'), ",") # 2-Cole-cole: czytanie watości z pliku csv
@@ -53,6 +58,7 @@ def main():
     # print(FCCO[1].get_sigma0())
     # print(FCCO[1].get_epsilon_inf())
     # print(show_list(FCC))
+    # print(FCCO[1].get_tau())
     # print(epsilon(CC2,0,2))
     # print(tau(CC2,0,2))
     # print(alpha(CC2,0,2))
@@ -63,6 +69,7 @@ def main():
     # print(z.imag)
 
     list_2_file(n_cole_cole(4, freq_4_cc_bottom, freq_4_cc_upper, FCCO, step), 'testowy4.csv')
+    list_2_file(n_cole_cole(2, freq_2_cc_bottom, freq_2_cc_upper, TCCO, step), 'testowy2.csv')
 
 
 if __name__ == '__main__':
