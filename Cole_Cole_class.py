@@ -39,7 +39,7 @@ class coleCole:
         tau_n = []
 
         for i in range(n):
-            tau_n.append(float(list[index][3 + i * 3]))
+            tau_n.append(float(list[index][3 + i * 3]) * 10 ** (-12 + 3 * i))
             # print(tau_n)
         return tau_n
 
