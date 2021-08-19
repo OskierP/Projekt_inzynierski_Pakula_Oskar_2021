@@ -30,7 +30,7 @@ def show_list(list):
 def list_2_file(list, file):
     csv_writer = csv.writer(open(file, 'w'))
     csv_writer.writerows(list)
-    file.close()
+    # file.close()
 
 
 def str_2_float_list(list):
