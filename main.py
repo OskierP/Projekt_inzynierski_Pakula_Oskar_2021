@@ -1,11 +1,8 @@
 # Made by Oskar Pakula
 # Gdansk University of Technology
 # Bachelor of Science - project
-import csv
 
 import constant as const
-from Objects_2_Cole_Cole import Two_Cole_Cole_Objects as TCCO
-from Objects_4_Cole_Cole import Four_Cole_Cole_Objects as FCCO
 from file_functions_module import *
 from plot_module import plot
 
@@ -19,7 +16,7 @@ def disperssion_range(n: int, epsilon, tau, alpha, freq: float):  # zakresy dysp
     return sigma
 
 
-def n_cole_cole(n: int, freq_bottom: int, freq_upper: int, list, step: int):
+def n_cole_cole(n: int, freq_bottom: int, freq_upper: int, list, step: int, real_imag):
     array_tissue = []
     i = 0
 
@@ -33,7 +30,14 @@ def n_cole_cole(n: int, freq_bottom: int, freq_upper: int, list, step: int):
                                  n, tissue.get_epsilon(), tissue.get_tau(), tissue.get_alpha(), float(freq)
                              ) +
                              (tissue.get_sigma0() / (1j * 2 * const.PI * const.epsilon_0)))
-            array_tissue[i].append(str(round(result.real, 3)))
+
+            if real_imag:
+                result = round(result.real, 3)
+            else:
+                result = round((-result.imag * const.pi_epsilon_0 * freq), 5)
+
+            array_tissue[i].append(str(result))
+
         i += 1
 
     return array_tissue
@@ -46,8 +50,9 @@ def freq_for_plot(freq_bottom: int, freq_upper: int, step: int, files):
         array.append(freqz)
 
     with open(files, 'w') as file:
-        for element in array:
-            file.write(f'{element},')
+        file.write(array[0])
+        for element in array[1:]:
+            file.write(f',{element}')
     file.close()
 
 
@@ -57,22 +62,27 @@ def main():
     step = 1 * 10 ** 6
 
     # calculates values epsilon_r
-    # list_2_file(n_cole_cole(4, freq_bottom, freq_upper, FCCO, step), 'testowy4.csv')
-    # list_2_file(n_cole_cole(2, freq_bottom, freq_upper, TCCO, step), 'testowy2.csv')
-    # freq_for_plot(freq_bottom, freq_upper, step, 'frequency.csv') #need to delete last ","
+    # list_2_file(n_cole_cole(4, freq_bottom, freq_upper, FCCO, step), 'epsilon_fcc.csv')
+    # list_2_file(n_cole_cole(2, freq_bottom, freq_upper, TCCO, step), 'epsilon_tcc.csv')
+    # freq_for_plot(freq_bottom, freq_upper, step, 'frequency.csv')
 
     # calculates values sigma
-    #
-    #
+    # list_2_file(n_cole_cole(4, freq_bottom, freq_upper, FCCO, step, False), 'sigma_fcc.csv')
+    # list_2_file(n_cole_cole(2, freq_bottom, freq_upper, TCCO, step, False), 'sigma_tcc.csv')
 
     freq = file_2_dict('frequency.csv', ',')
-    four_cole_cole_dict = file_2_dict('testowy4.csv', ',')
-    two_cole_cole_dict = file_2_dict('testowy2.csv', ',')
+    # for epsilon_r
+    four_cole_cole_dict_epsilon = file_2_dict('epsilon_fcc.csv', ',')
+    two_cole_cole_dict_epsilon = file_2_dict('epsilon_tcc.csv', ',')
+
+    # for sigma
+    four_cole_cole_dict_sigma = file_2_dict('sigma_fcc.csv', ',')
+    two_cole_cole_dict_sigma = file_2_dict('sigma_tcc.csv', ',')
 
     # print(two_cole_cole_dict['frequency'].index(500000000))
 
     # Does not metter if we take four_cole_cole_dict or two_cole_cole_dict for frequency
-    plot(freq['frequency'], four_cole_cole_dict['Dry_Skin'], two_cole_cole_dict['Skin'])
+    plot(freq['frequency'], four_cole_cole_dict_sigma['Colon'], two_cole_cole_dict_sigma['Colon'])
 
 
 if __name__ == '__main__':
