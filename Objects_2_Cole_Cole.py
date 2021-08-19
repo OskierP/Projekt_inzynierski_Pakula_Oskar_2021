@@ -1,7 +1,7 @@
 from Cole_Cole_class import coleCole as CC
 from file_functions_module import file_2_list
 
-TCC = file_2_list(open('Cole-Cole_2.csv', 'r'), ",")  # 4-Cole-cole: czytanie watości z pliku csv
+TCC = file_2_list(open('Cole-Cole_2.csv', 'r'), ",")  # 2-Cole-cole: czytanie watości z pliku csv
 
 Skin = CC(TCC, 0, 2)
 
