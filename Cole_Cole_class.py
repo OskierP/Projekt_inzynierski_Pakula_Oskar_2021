@@ -57,3 +57,15 @@ class coleCole:
 
     def get_alpha(self):
         return self.alpha_n
+
+    def get_all(self):
+        array = [self.name, self.epsilon_inf]
+        for i in range(len(self.get_tau())):
+            array.append(self.get_epsilon()[i])
+            array.append(self.get_tau()[i])
+            array.append(self.get_alpha()[i])
+        array.append(self.get_sigma0())
+
+        return array
+
+
