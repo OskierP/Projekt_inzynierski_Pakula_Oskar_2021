@@ -19,6 +19,7 @@ def file_2_list(file, character: str):
         else:
             array[index].append(element)
 
+    file.close()
     return array
 
 
@@ -29,6 +30,7 @@ def show_list(list):
 def list_2_file(list, file):
     csv_writer = csv.writer(open(file, 'w'))
     csv_writer.writerows(list)
+    file.close()
 
 
 def str_2_float_list(list):
