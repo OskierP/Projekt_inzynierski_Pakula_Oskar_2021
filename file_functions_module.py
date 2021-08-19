@@ -3,12 +3,12 @@ import csv
 import numpy as np
 
 
-def file_2_list(file, x: str):
+def file_2_list(file, character: str):
     array = [[]]
     # array.append([])
     index = 0
 
-    for element in file.read().split(f"{x}"):
+    for element in file.read().split(f"{character}"):
 
         if '\n' in element:
             tmp = element.split('\n')
@@ -29,3 +29,23 @@ def show_list(list):
 def list_2_file(list, file):
     csv_writer = csv.writer(open(file, 'w'))
     csv_writer.writerows(list)
+
+
+def str_2_float_list(list):
+    for element in list:
+        for i in range(1, len(element)):
+            element[i] = float(element[i])
+
+
+def file_2_dict(file, character:str):
+    dict = {}
+
+    tmp_array = file_2_list(open(file, 'r'),',')
+
+    str_2_float_list(tmp_array)
+
+    for element in tmp_array:
+        dict[element[0]]=element[1:]
+
+    return dict
+
