@@ -40,7 +40,7 @@ def str_2_float_list(list):
 def file_2_dict(file, character:str):
     dict = {}
 
-    tmp_array = file_2_list(open(file, 'r'),',')
+    tmp_array = file_2_list(open(file, 'r'),character)
 
     str_2_float_list(tmp_array)
 
