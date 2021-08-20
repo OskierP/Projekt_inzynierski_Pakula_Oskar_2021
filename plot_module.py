@@ -5,7 +5,7 @@ def find_index(dict, frequency):
     return dict.index(frequency)
 
 
-def plot(x, fcc_model1='', tcc_model='', cc_model1='', model1='', cc_model2= '', model2 = ''):
+def plot(x, file_name: str, fcc_model1='', tcc_model='', cc_model1='', model1='', cc_model2='', model2=''):
     fig, (epsilon_r, sigma) = mp.subplots(2, sharex=True)
 
     width_fcc1 = 2
@@ -75,12 +75,9 @@ def plot(x, fcc_model1='', tcc_model='', cc_model1='', model1='', cc_model2= '',
     sigma.set_ylabel('Sigma [6]')
     sigma.set_title('Sigma')
     sigma.set_yscale('log')
-    # sigma.legend()
 
     mp.xlabel('Frequency [Hz]')
     mp.xscale('log')
 
-    # mp.ylabel('Epsilon [Er]')
-    # mp.title('Relative permittivity')
-
+    mp.savefig(f'{file_name}.png', dpi=600)
     mp.show()
