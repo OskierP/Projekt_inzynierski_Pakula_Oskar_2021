@@ -39,7 +39,7 @@ def str_2_float_list(list):
             element[i] = float(element[i])
 
 
-def file_2_dict(file, character:str):
+def file_2_dict(file, character: str):
     dict = {}
 
     tmp_array = file_2_list(open(file, 'r'), character)
@@ -47,7 +47,6 @@ def file_2_dict(file, character:str):
     str_2_float_list(tmp_array)
 
     for element in tmp_array:
-        dict[element[0]]=element[0:]
+        dict[element[0]] = element[0:]
 
     return dict
-
