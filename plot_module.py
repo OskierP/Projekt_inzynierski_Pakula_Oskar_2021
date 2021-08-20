@@ -5,7 +5,7 @@ def find_index(dict, frequency):
     return dict.index(frequency)
 
 
-def plot(x, fcc_model1='', tcc_model='', fcc_model2='', cc_model= '', model = ''):
+def plot(x, fcc_model1='', tcc_model='', cc_model1='', model1='', cc_model2= '', model2 = ''):
     fig, (epsilon_r, sigma) = mp.subplots(2, sharex=True)
 
     width_fcc1 = 2
@@ -33,30 +33,38 @@ def plot(x, fcc_model1='', tcc_model='', fcc_model2='', cc_model= '', model = ''
             graph.plot(x[index_10GHz - 1:], fcc_model1[ind][index_10GHz - 1:], linestyle='dotted', color='g',
                    linewidth=width_fcc1)
 
-        if fcc_model2 != '':
-            graph.plot(x[1:index_10GHz - 1], fcc_model2[ind][1:index_10GHz - 1],
-                       label=fcc_model2[ind][0] + ': 4-Cole-Cole', color='b',
+        if cc_model1 != '':
+            if model1 == '2':
+                graph.plot(x[index_500MHz - 1:], cc_model1[ind][index_500MHz - 1:],
+                           label=cc_model1[ind][0] + ': 2-Cole-Cole', color='b',
+                           linewidth=width_tcc)
+                graph.plot(x[1:index_500MHz - 1], cc_model1[ind][1:index_500MHz - 1], color='b',
+                           linestyle='dotted', linewidth=width_tcc)
+
+            elif model1 == '4':
+                graph.plot(x[1:index_10GHz - 1], cc_model1[ind][1:index_10GHz - 1],
+                       label=cc_model1[ind][0] + ': 4-Cole-Cole', color='b',
                        linewidth=width_fcc2)
-            graph.plot(x[index_10GHz - 1:], fcc_model2[ind][index_10GHz - 1:], linestyle='dotted', color='b',
+                graph.plot(x[index_10GHz - 1:], cc_model1[ind][index_10GHz - 1:], linestyle='dotted', color='b',
                        linewidth=width_fcc2)
 
         if tcc_model !='':
             graph.plot(x[1:index_500MHz - 1], tcc_model[ind][1:index_500MHz - 1], color='orange',
                    linestyle='dotted', linewidth=width_tcc)
 
-        if cc_model !='':
-            if model == '2':
-                graph.plot(x[index_500MHz - 1:], cc_model[ind][index_500MHz - 1:],
-                           label=cc_model[ind][0] + ': 2-Cole-Cole', color='r',
+        if cc_model2 !='':
+            if model2 == '2':
+                graph.plot(x[index_500MHz - 1:], cc_model2[ind][index_500MHz - 1:],
+                           label=cc_model2[ind][0] + ': 2-Cole-Cole', color='r',
                            linewidth=width_tcc)
-                graph.plot(x[1:index_500MHz - 1], cc_model[ind][1:index_500MHz - 1], color='r',
+                graph.plot(x[1:index_500MHz - 1], cc_model2[ind][1:index_500MHz - 1], color='r',
                            linestyle='dotted', linewidth=width_tcc)
 
-            elif model == '4':
-                graph.plot(x[1:index_10GHz - 1], cc_model[ind][1:index_10GHz - 1],
-                           label=cc_model[ind][0] + ': 4-Cole-Cole', color='r',
+            elif model2 == '4':
+                graph.plot(x[1:index_10GHz - 1], cc_model2[ind][1:index_10GHz - 1],
+                           label=cc_model2[ind][0] + ': 4-Cole-Cole', color='r',
                            linewidth=width_fcc2)
-                graph.plot(x[index_10GHz - 1:], cc_model[ind][index_10GHz - 1:], linestyle='dotted', color='r',
+                graph.plot(x[index_10GHz - 1:], cc_model2[ind][index_10GHz - 1:], linestyle='dotted', color='r',
                            linewidth=width_fcc2)
 
     epsilon_r.set_title('Relative permittivity')
