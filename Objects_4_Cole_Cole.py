@@ -41,6 +41,5 @@ Colon = CC(FCC, 17, 4)
 
 Small = CC(FCC, 18, 4)
 
-Four_Cole_Cole_Objects = [Dry_Skin, Wet_Skin, Fat, Muscle, Spounge_Bone, Condense_Bone, Marrow, Grey_Brain, White_Brain,
-                          Eye, Blood, Heart,Kidney, Liver, Lunge_nO2, Lunge_O2, Stomach, Colon, Small, Dry_Skin, Wet_Skin, Fat,
-                          Muscle]
+four_Cole_Cole_Objects = [Dry_Skin, Wet_Skin, Fat, Muscle, Spounge_Bone, Condense_Bone, Marrow, Grey_Brain, White_Brain,
+                          Eye, Blood, Heart,Kidney, Liver, Lunge_nO2, Lunge_O2, Stomach, Colon, Small]
