@@ -4,10 +4,10 @@
 
 import constant as const
 from file_functions_module import *
-from plot_module import plot
-from Objects_4_Cole_Cole import four_Cole_Cole_Objects as fCCO
-from Objects_2_Cole_Cole import two_Cole_Cole_Objects as tCCO
+# from Objects_4_Cole_Cole import four_Cole_Cole_Objects as fCCO
+# from Objects_2_Cole_Cole import two_Cole_Cole_Objects as tCCO
 from tissue_plots import tissue_plotting
+
 
 def disperssion_range(n: int, epsilon, tau, alpha, freq: float):  # zakresy dyspersyjne
     sigma = 0
@@ -81,13 +81,10 @@ def main():
     four_cole_cole_dict_sigma = file_2_dict('sigma_fcc.csv', ',')
     two_cole_cole_dict_sigma = file_2_dict('sigma_tcc.csv', ',')
 
-    # print(two_cole_cole_dict['frequency'].index(500000000))
-
     # Does not metter if we take four_cole_cole_dict or two_cole_cole_dict for frequency
     fcc1 = [four_cole_cole_dict_epsilon['Dry_Skin'], four_cole_cole_dict_sigma['Dry_Skin']]
     tcc = [two_cole_cole_dict_epsilon['Skin'], two_cole_cole_dict_sigma['Skin']]
     fcc2 = [four_cole_cole_dict_epsilon['Wet_Skin'], four_cole_cole_dict_sigma['Wet_Skin']]
-    # plot(freq['frequency'], fcc1, tcc, fcc2)
     tissue_plotting(freq['frequency'], four_cole_cole_dict_epsilon, four_cole_cole_dict_sigma, two_cole_cole_dict_epsilon, two_cole_cole_dict_sigma)
 
 if __name__ == '__main__':
