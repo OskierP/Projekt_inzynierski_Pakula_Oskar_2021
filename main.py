@@ -5,7 +5,9 @@
 import constant as const
 from file_functions_module import *
 from plot_module import plot
-
+from Objects_4_Cole_Cole import four_Cole_Cole_Objects as fCCO
+from Objects_2_Cole_Cole import two_Cole_Cole_Objects as tCCO
+from tissue_plots import tissue_plotting
 
 def disperssion_range(n: int, epsilon, tau, alpha, freq: float):  # zakresy dyspersyjne
     sigma = 0
@@ -29,7 +31,7 @@ def n_cole_cole(n: int, freq_bottom: int, freq_upper: int, list, step: int, real
                              disperssion_range(
                                  n, tissue.get_epsilon(), tissue.get_tau(), tissue.get_alpha(), float(freq)
                              ) +
-                             (tissue.get_sigma0() / (1j * 2 * const.PI * const.epsilon_0)))
+                             (tissue.get_sigma0() / (1j * 2 * const.PI * const.epsilon_0 * float(freq))))
 
             if real_imag:
                 result = round(result.real, 3)
@@ -62,13 +64,13 @@ def main():
     step = 1 * 10 ** 6
 
     # calculates values epsilon_r
-    # list_2_file(n_cole_cole(4, freq_bottom, freq_upper, FCCO, step), 'epsilon_fcc.csv')
-    # list_2_file(n_cole_cole(2, freq_bottom, freq_upper, TCCO, step), 'epsilon_tcc.csv')
+    # list_2_file(n_cole_cole(4, freq_bottom, freq_upper, fCCO, step, True), 'epsilon_fcc.csv')
+    # list_2_file(n_cole_cole(2, freq_bottom, freq_upper, tCCO, step, True), 'epsilon_tcc.csv')
     # freq_for_plot(freq_bottom, freq_upper, step, 'frequency.csv')
 
     # calculates values sigma
-    # list_2_file(n_cole_cole(4, freq_bottom, freq_upper, FCCO, step, False), 'sigma_fcc.csv')
-    # list_2_file(n_cole_cole(2, freq_bottom, freq_upper, TCCO, step, False), 'sigma_tcc.csv')
+    # list_2_file(n_cole_cole(4, freq_bottom, freq_upper, fCCO, step, False), 'sigma_fcc.csv')
+    # list_2_file(n_cole_cole(2, freq_bottom, freq_upper, tCCO, step, False), 'sigma_tcc.csv')
 
     freq = file_2_dict('frequency.csv', ',')
     # for epsilon_r
@@ -82,8 +84,11 @@ def main():
     # print(two_cole_cole_dict['frequency'].index(500000000))
 
     # Does not metter if we take four_cole_cole_dict or two_cole_cole_dict for frequency
-    plot(freq['frequency'], four_cole_cole_dict_sigma['Colon'], two_cole_cole_dict_sigma['Colon'])
-
+    fcc1 = [four_cole_cole_dict_epsilon['Dry_Skin'], four_cole_cole_dict_sigma['Dry_Skin']]
+    tcc = [two_cole_cole_dict_epsilon['Skin'], two_cole_cole_dict_sigma['Skin']]
+    fcc2 = [four_cole_cole_dict_epsilon['Wet_Skin'], four_cole_cole_dict_sigma['Wet_Skin']]
+    # plot(freq['frequency'], fcc1, tcc, fcc2)
+    tissue_plotting(freq['frequency'], four_cole_cole_dict_epsilon, four_cole_cole_dict_sigma, two_cole_cole_dict_epsilon, two_cole_cole_dict_sigma)
 
 if __name__ == '__main__':
     np.set_printoptions(linewidth=150)
