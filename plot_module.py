@@ -68,16 +68,16 @@ def plot(x, file_name: str, fcc_model1='', tcc_model='', cc_model1='', model1=''
                            linewidth=width_fcc2)
 
     epsilon_r.set_title('Relative permittivity')
-    epsilon_r.set_ylabel('Epsilon [Er]')
+    epsilon_r.set_ylabel('\u03B5r')
     epsilon_r.set_yscale('log')
     epsilon_r.legend()
 
-    sigma.set_ylabel('Sigma [6]')
+    sigma.set_ylabel('\u03C3 [S/m]')
     sigma.set_title('Sigma')
     sigma.set_yscale('log')
 
     mp.xlabel('Frequency [Hz]')
     mp.xscale('log')
 
-    mp.savefig(f'{file_name}.png', dpi=600)
+    mp.savefig(f'plot_of_{file_name}.png', dpi=600)
     mp.show()
