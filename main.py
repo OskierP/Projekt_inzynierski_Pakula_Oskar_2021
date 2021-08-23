@@ -61,7 +61,7 @@ def freq_for_plot(freq_bottom: int, freq_upper: int, step: int, files):
 def main():
     freq_bottom = 1 * 10 ** 6
     freq_upper = 26500 * 10 ** 6
-    step = 1 * 10 ** 6
+    step = 10 * 10 ** 5
 
     # calculates values epsilon_r
     # list_2_file(n_cole_cole(4, freq_bottom, freq_upper, fCCO, step, True), 'epsilon_fcc.csv')
@@ -73,6 +73,7 @@ def main():
     # list_2_file(n_cole_cole(2, freq_bottom, freq_upper, tCCO, step, False), 'sigma_tcc.csv')
 
     freq = file_2_dict('frequency.csv', ',')
+
     # for epsilon_r
     four_cole_cole_dict_epsilon = file_2_dict('epsilon_fcc.csv', ',')
     two_cole_cole_dict_epsilon = file_2_dict('epsilon_tcc.csv', ',')
@@ -85,7 +86,9 @@ def main():
     fcc1 = [four_cole_cole_dict_epsilon['Dry_Skin'], four_cole_cole_dict_sigma['Dry_Skin']]
     tcc = [two_cole_cole_dict_epsilon['Skin'], two_cole_cole_dict_sigma['Skin']]
     fcc2 = [four_cole_cole_dict_epsilon['Wet_Skin'], four_cole_cole_dict_sigma['Wet_Skin']]
-    tissue_plotting(freq['frequency'], four_cole_cole_dict_epsilon, four_cole_cole_dict_sigma, two_cole_cole_dict_epsilon, two_cole_cole_dict_sigma)
+    tissue_plotting(freq['frequency'], four_cole_cole_dict_epsilon, four_cole_cole_dict_sigma,
+                    two_cole_cole_dict_epsilon, two_cole_cole_dict_sigma)
+
 
 if __name__ == '__main__':
     np.set_printoptions(linewidth=150)
