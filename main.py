@@ -61,7 +61,10 @@ def freq_for_plot(freq_bottom: int, freq_upper: int, step: int, files):
 def main():
     freq_bottom = 1 * 10 ** 6
     freq_upper = 26500 * 10 ** 6
-    step = 10 * 10 ** 5
+    step = 1 * 10 ** 6
+
+    freq_bottom_tcc = 500 * 10 ** 6
+    freq_upper_fcc = 10 * 10 ** 9
 
     # calculates values epsilon_r
     # list_2_file(n_cole_cole(4, freq_bottom, freq_upper, fCCO, step, True), 'epsilon_fcc.csv')
@@ -82,12 +85,11 @@ def main():
     four_cole_cole_dict_sigma = file_2_dict('sigma_fcc.csv', ',')
     two_cole_cole_dict_sigma = file_2_dict('sigma_tcc.csv', ',')
 
-    # Does not metter if we take four_cole_cole_dict or two_cole_cole_dict for frequency
-    fcc1 = [four_cole_cole_dict_epsilon['Dry_Skin'], four_cole_cole_dict_sigma['Dry_Skin']]
-    tcc = [two_cole_cole_dict_epsilon['Skin'], two_cole_cole_dict_sigma['Skin']]
-    fcc2 = [four_cole_cole_dict_epsilon['Wet_Skin'], four_cole_cole_dict_sigma['Wet_Skin']]
+    # Does not matter if we take four_cole_cole_dict or two_cole_cole_dict for frequency
     tissue_plotting(freq['frequency'], four_cole_cole_dict_epsilon, four_cole_cole_dict_sigma,
                     two_cole_cole_dict_epsilon, two_cole_cole_dict_sigma)
+
+    # plot_all_tissue(freq['frequency'], two_cole_cole_dict_epsilon, two_cole_cole_dict_sigma, freq_bottom_tcc)
 
 
 if __name__ == '__main__':
