@@ -5,6 +5,42 @@ def find_index(dictionary, frequency):
     return dictionary.index(frequency)
 
 
+def plot_all_tissue(x, model1, model2, freq: int):
+    start = 1
+    stop = -1
+    tmp = 10 * 10 ** 9
+
+    fig, (epsilon_r, sigma) = mp.subplots(2, sharex=True)
+
+    if freq == tmp:
+        stop = find_index(x[1:], freq)
+    else:
+        start = find_index(x[1:], freq)
+
+    for i in model1:
+        epsilon_r.plot(x[start:stop], model1[i][start:stop], label=model1[i][0])
+        sigma.plot(x[start:stop], model2[i][start:stop], label=model2[i][0])
+
+        sigma.legend(loc='right', ncol=1, bbox_to_anchor=(1.13, 1), fontsize=7)
+
+    epsilon_r.set_title('Relative permittivity')
+    epsilon_r.set_ylabel('\u03B5r')
+    epsilon_r.set_yscale('log')
+    epsilon_r.grid()
+    epsilon_r.grid(which='minor', alpha=0.15)
+
+    sigma.set_title('Sigma')
+    sigma.set_ylabel('\u03C3 [S/m]')
+    sigma.set_yscale('log')
+    sigma.grid()
+    sigma.grid(which='minor', alpha=0.15)
+
+    mp.xlabel('Frequency [Hz]')
+    mp.xscale('log')
+
+    mp.show()
+
+
 def plot(x, file_name: str, fcc_model='', tcc_model='', cc_model1='', model1='', cc_model2='', model2=''):
     fig, (epsilon_r, sigma) = mp.subplots(2, sharex=True)
 
@@ -46,8 +82,8 @@ def plot(x, file_name: str, fcc_model='', tcc_model='', cc_model1='', model1='',
 
         if tcc_model != '':
             color = 'r'
-            if fcc_model =='' and cc_model1 == '':
-                color='tab:blue'
+            if fcc_model == '' and cc_model1 == '':
+                color = 'tab:blue'
             graph.plot(x[index_500MHz - 1:], tcc_model[ind][index_500MHz - 1:],
                        label=tcc_model[ind][0] + ': 2-Cole-Cole', color=color,
                        linewidth=width_tcc)
@@ -66,20 +102,26 @@ def plot(x, file_name: str, fcc_model='', tcc_model='', cc_model1='', model1='',
                 graph.plot(x[1:index_10GHz - 1], cc_model2[ind][1:index_10GHz - 1],
                            label=cc_model2[ind][0] + ': 4-Cole-Cole', color='tab:orange',
                            linewidth=width_fcc2)
-                graph.plot(x[index_10GHz - 1:], cc_model2[ind][index_10GHz - 1:], linestyle='dotted', color='tab:orange',
+                graph.plot(x[index_10GHz - 1:], cc_model2[ind][index_10GHz - 1:], linestyle='dotted',
+                           color='tab:orange',
                            linewidth=width_fcc2)
 
     epsilon_r.set_title('Relative permittivity')
     epsilon_r.set_ylabel('\u03B5r')
     epsilon_r.set_yscale('log')
     epsilon_r.legend()
+    epsilon_r.grid()
+    epsilon_r.grid(which='minor', alpha=0.15)
 
     sigma.set_title('Sigma')
     sigma.set_ylabel('\u03C3 [S/m]')
     sigma.set_yscale('log')
+    sigma.grid()
+    sigma.grid(which='minor', alpha=0.15)
 
     mp.xlabel('Frequency [Hz]')
     mp.xscale('log')
 
     mp.savefig(f'plot_of_{file_name}.png', dpi=600)
     # mp.show()
+    mp.close()
