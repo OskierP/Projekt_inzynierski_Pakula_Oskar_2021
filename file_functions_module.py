@@ -3,6 +3,8 @@ import csv
 import numpy as np
 
 
+# functions for file operations
+
 def file_2_list(file, character: str):
     array = [[]]
     # array.append([])
