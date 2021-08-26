@@ -5,11 +5,14 @@ def find_index(dictionary, frequency):
     return dictionary.index(frequency)
 
 
-def plot_all_tissue(x, model1, model2, freq: int):
+def plot_all_tissue(x, param1, param2, freq: int):
+    cm = ['red', 'blue', 'lime', 'green', 'orange', 'purple', 'darkred', 'sienna', 'navy', 'magenta']
+    line = ['solid', 'dotted']
     start = 1
-    stop = -1
-    tmp = 10 * 10 ** 9
+    stop = 264991
 
+    tmp = 10 * 10 ** 9
+    j, k = 0, 0
     fig, (epsilon_r, sigma) = mp.subplots(2, sharex=True)
 
     if freq == tmp:
@@ -17,12 +20,16 @@ def plot_all_tissue(x, model1, model2, freq: int):
     else:
         start = find_index(x[1:], freq)
 
-    for i in model1:
-        epsilon_r.plot(x[start:stop], model1[i][start:stop], label=model1[i][0])
-        sigma.plot(x[start:stop], model2[i][start:stop], label=model2[i][0])
-
+    for i in param1:
+        epsilon_r.plot(x[start:stop], param1[i][start:stop], label=param1[i][0], color=cm[j], linestyle=line[k])
+        sigma.plot(x[start:stop], param2[i][start:stop], label=param2[i][0], color=cm[j], linestyle=line[k])
         sigma.legend(loc='right', ncol=1, bbox_to_anchor=(1.13, 1), fontsize=7)
-
+        k += 1
+        if k == 2:
+            k = 0
+            j += 1
+            if j == 10:
+                j = 0
     epsilon_r.set_title('Relative permittivity')
     epsilon_r.set_ylabel('\u03B5r')
     epsilon_r.set_yscale('log')
