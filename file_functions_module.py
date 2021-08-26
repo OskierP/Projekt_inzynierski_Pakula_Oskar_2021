@@ -40,13 +40,13 @@ def str_2_float_list(list):
 
 
 def file_2_dict(file, character: str):
-    dict = {}
+    tmp_dict = {}
 
     tmp_array = file_2_list(open(file, 'r'), character)
 
     str_2_float_list(tmp_array)
 
     for element in tmp_array:
-        dict[element[0]] = element[0:]
+        tmp_dict[element[0]] = element[0:]
 
-    return dict
+    return tmp_dict
