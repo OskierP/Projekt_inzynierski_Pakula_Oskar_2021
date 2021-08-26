@@ -1,5 +1,5 @@
 class ColeCole:
-
+# class for tissues
     def __init__(self, list, index, n):
         self.list = list
         self.index = index
