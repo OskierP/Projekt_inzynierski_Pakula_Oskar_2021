@@ -1,7 +1,7 @@
-from Cole_Cole_class import coleCole as CC
+from Cole_Cole_class import ColeCole as CC
 from file_functions_module import file_2_list
 
-FCC = file_2_list(open('Cole-Cole_4.csv', 'r'), ",")  # 4-Cole-cole: czytanie watości z pliku csv
+FCC = file_2_list(open('Cole-Cole_4.csv', 'r'), ",")  # 4-Cole-cole: reading values from a file
 
 Dry_Skin = CC(FCC, 0, 4)
 

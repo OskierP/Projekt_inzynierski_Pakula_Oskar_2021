@@ -1,7 +1,7 @@
-from Cole_Cole_class import coleCole as CC
+from Cole_Cole_class import ColeCole as CC
 from file_functions_module import file_2_list
 
-TCC = file_2_list(open('Cole-Cole_2.csv', 'r'), ",")  # 2-Cole-cole: czytanie watości z pliku csv
+TCC = file_2_list(open('Cole-Cole_2.csv', 'r'), ",")  # 2-Cole-cole: reading values from a file
 
 Skin = CC(TCC, 0, 2)
 
@@ -43,5 +43,5 @@ Spleen = CC(TCC, 18, 2)
 
 Uetrus = CC(TCC, 19, 2)
 
-
-two_Cole_Cole_Objects = [Skin, Fat, Muscle, Blood, Heart, Kidney, Liver, Lunge, Stomach, Colon, Small, Aort, Bladder, Esophagus, Fallopian, Gall_Bladder, Ovary, Pancears, Spleen, Uetrus]
+two_Cole_Cole_Objects = [Skin, Fat, Muscle, Blood, Heart, Kidney, Liver, Lunge, Stomach, Colon, Small, Aort, Bladder,
+                         Esophagus, Fallopian, Gall_Bladder, Ovary, Pancears, Spleen, Uetrus]
