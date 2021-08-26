@@ -4,15 +4,16 @@
 
 import constant as const
 from file_functions_module import *
-# from Objects_4_Cole_Cole import four_Cole_Cole_Objects as fCCO
 # from Objects_2_Cole_Cole import two_Cole_Cole_Objects as tCCO
+# from Objects_4_Cole_Cole import four_Cole_Cole_Objects as fCCO
+from plot_module import plot_all_tissue
 from tissue_plots import tissue_plotting
 
 
-def disperssion_range(n: int, epsilon, tau, alpha, freq: float):  # zakresy dyspersyjne
+def disperssion_range(n: int, epsilon, tau, alpha, freq: float):  # dispersion ranges
     sigma = 0
 
-    for i in range(0, n):  # zakres od 1 do n. Należy pamiętać, iż programy liczą od zera (tablice)
+    for i in range(0, n):  # range from 1 to n, NOTE: first element is at index 0
         sigma = complex(sigma + (epsilon[i] / (1 + (1j * 2 * const.PI * freq * tau[i]) ** (1 - alpha[i]))))
 
     return sigma
@@ -59,23 +60,26 @@ def freq_for_plot(freq_bottom: int, freq_upper: int, step: int, files):
 
 
 def main():
+    # frequencies
     # uncomment when using list_2_file
-    # freq_bottom = 1 * 10 ** 6
-    # freq_upper = 26500 * 10 ** 6
-    # step = 1 * 10 ** 6
+    freq_bottom = 1 * 10 ** 6
+    freq_upper = 26500 * 10 ** 6
+    step = 100 * 10 ** 3
 
     # uncomment when using plot_all_tissue
-    # freq_bottom_tcc = 500 * 10 ** 6
-    # freq_upper_fcc = 10 * 10 ** 9
+    freq_bottom_tcc = 500 * 10 ** 6
+    freq_upper_fcc = 10 * 10 ** 9
 
     # calculates values epsilon_r
     # list_2_file(n_cole_cole(4, freq_bottom, freq_upper, fCCO, step, True), 'epsilon_fcc.csv')
     # list_2_file(n_cole_cole(2, freq_bottom, freq_upper, tCCO, step, True), 'epsilon_tcc.csv')
-    # freq_for_plot(freq_bottom, freq_upper, step, 'frequency.csv')
 
     # calculates values sigma
     # list_2_file(n_cole_cole(4, freq_bottom, freq_upper, fCCO, step, False), 'sigma_fcc.csv')
     # list_2_file(n_cole_cole(2, freq_bottom, freq_upper, tCCO, step, False), 'sigma_tcc.csv')
+
+    # adds values for the x axis
+    # freq_for_plot(freq_bottom, freq_upper, step, 'frequency.csv')
 
     # for frequency
     freq = file_2_dict('frequency.csv', ',')
@@ -88,12 +92,13 @@ def main():
     four_cole_cole_dict_sigma = file_2_dict('sigma_fcc.csv', ',')
     two_cole_cole_dict_sigma = file_2_dict('sigma_tcc.csv', ',')
 
-    # tissue ploting - groups of tissues
+    # tissue plotting - groups of tissues
     tissue_plotting(freq['frequency'], four_cole_cole_dict_epsilon, four_cole_cole_dict_sigma,
                     two_cole_cole_dict_epsilon, two_cole_cole_dict_sigma)
 
     # tissue plotting - one plot, one model
-    # plot_all_tissue(freq['frequency'], two_cole_cole_dict_epsilon, two_cole_cole_dict_sigma, freq_bottom_tcc)
+    plot_all_tissue(freq['frequency'], two_cole_cole_dict_epsilon, two_cole_cole_dict_sigma, freq_bottom_tcc)
+    plot_all_tissue(freq['frequency'], four_cole_cole_dict_epsilon, four_cole_cole_dict_sigma, freq_upper_fcc)
 
 
 if __name__ == '__main__':
