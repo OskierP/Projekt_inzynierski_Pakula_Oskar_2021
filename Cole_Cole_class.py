@@ -1,4 +1,4 @@
-class coleCole:
+class ColeCole:
 
     def __init__(self, list, index, n):
         self.list = list
@@ -9,9 +9,9 @@ class coleCole:
         self.epsilon_inf = float(list[index][1])
         self.sigma0 = float(list[index][-1])
 
-        self.epsilon_n = coleCole.epsilon(list, index, n)
-        self.tau_n = coleCole.tau(list, index, n)
-        self.alpha_n = coleCole.alpha(list, index, n)
+        self.epsilon_n = ColeCole.epsilon(list, index, n)
+        self.tau_n = ColeCole.tau(list, index, n)
+        self.alpha_n = ColeCole.alpha(list, index, n)
 
     def get_name(self):
         return self.name
@@ -28,7 +28,6 @@ class coleCole:
 
         for i in range(n):
             eps_n.append(float(list[index][2 + i * 3]))
-            # print(eps_n)
         return eps_n
 
     def get_epsilon(self):
@@ -40,7 +39,6 @@ class coleCole:
 
         for i in range(n):
             tau_n.append(float(list[index][3 + i * 3]) * 10 ** (-12 + 3 * i))
-            # print(tau_n)
         return tau_n
 
     def get_tau(self):
@@ -52,7 +50,6 @@ class coleCole:
 
         for i in range(n):
             alpha_n.append(float(list[index][4 + i * 3]))
-            # print(alpha_n)
         return alpha_n
 
     def get_alpha(self):
@@ -67,5 +64,3 @@ class coleCole:
         array.append(self.get_sigma0())
 
         return array
-
-
