@@ -122,6 +122,6 @@ def plot(x, file_name: str, fcc_model='', tcc_model='', cc_model1='', model1='',
     mp.xlabel('Frequency [Hz]')
     mp.xscale('log')
 
-    mp.savefig(f'plot_of_{file_name}.png', dpi=600)
+    mp.savefig(f'Plots/plot_of_{file_name}.png', dpi=600)
     # mp.show()
     mp.close()
